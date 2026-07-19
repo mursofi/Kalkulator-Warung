@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="id" data-theme="light">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,154 +9,52 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif;
-        }
-
-        :root {
-            /* Light theme - Soft blue-gray */
-            --bg-primary: #eef1f5;
-            --bg-calculator: #dde3ec;
-            --bg-display: #c8d0dc;
-            --bg-button: #c8d0dc;
-            --bg-button-hover: #b8c1d0;
-            --bg-function: #a8b3c4;
-            --text-primary: #1a2332;
-            --text-secondary: #5a6478;
-            --text-display: #1a2332;
-            --accent: #4a6fa5;
-            --accent-hover: #3d5d8c;
-            --operator-bg: #e8913a;
-            --operator-text: #ffffff;
-            --equals-bg: #4a6fa5;
-            --equals-text: #ffffff;
-            --shadow: 0 15px 50px rgba(26, 35, 50, 0.15);
-            --shadow-sm: 0 4px 12px rgba(26, 35, 50, 0.08);
-            --border: rgba(26, 35, 50, 0.08);
-        }
-
-        [data-theme="dark"] {
-            /* Dark theme */
-            --bg-primary: #0a0e17;
-            --bg-calculator: #1a2332;
-            --bg-display: #0f1623;
-            --bg-button: #243044;
-            --bg-button-hover: #2d3a52;
-            --bg-function: #2d3a52;
-            --text-primary: #e8ecf1;
-            --text-secondary: #8a94a6;
-            --text-display: #e8ecf1;
-            --accent: #5a8fd4;
-            --accent-hover: #7aa8e0;
-            --operator-bg: #e8913a;
-            --operator-text: #0a0e17;
-            --equals-bg: #5a8fd4;
-            --equals-text: #0a0e17;
-            --shadow: 0 15px 50px rgba(0, 0, 0, 0.5);
-            --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.3);
-            --border: rgba(255, 255, 255, 0.08);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
-            min-height: 100vh;
-            background: var(--bg-primary);
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 20px;
-            transition: background 0.4s ease;
+            min-height: 100vh;
+            background: #1a1a2e;
         }
 
         .calculator {
-            background: var(--bg-calculator);
-            border-radius: 28px;
-            padding: 28px;
-            box-shadow: var(--shadow);
-            max-width: 380px;
+            background: #16213e;
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            max-width: 350px;
             width: 100%;
-            border: 1px solid var(--border);
-            transition: background 0.4s ease, box-shadow 0.4s ease;
         }
-
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 24px;
-        }
-
-        .title {
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .theme-toggle {
-            background: var(--bg-button);
-            border: none;
-            width: 42px;
-            height: 42px;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-primary);
-            transition: all 0.2s ease;
-        }
-
-        .theme-toggle:hover {
-            transform: scale(1.08);
-            background: var(--bg-button-hover);
-        }
-
-        .theme-toggle svg {
-            width: 20px;
-            height: 20px;
-        }
-
-        .theme-toggle .icon-sun { display: none; }
-        .theme-toggle .icon-moon { display: block; }
-
-        [data-theme="dark"] .theme-toggle .icon-sun { display: block; }
-        [data-theme="dark"] .theme-toggle .icon-moon { display: none; }
 
         .display {
-            background: var(--bg-display);
-            border-radius: 20px;
-            padding: 28px 24px;
-            margin-bottom: 24px;
-            min-height: 150px;
+            background: #0f3460;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            text-align: right;
+            min-height: 100px;
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
-            align-items: flex-end;
-            border: 1px solid var(--border);
-            transition: background 0.4s ease;
         }
 
-        .history {
-            font-size: 28px;
-            font-weight: 500;
-            color: var(--text-secondary);
-            margin-bottom: 12px;
-            min-height: 36px;
+        .previous-operand {
+            color: #a0a0a0;
+            font-size: 18px;
+            min-height: 25px;
+            word-wrap: break-word;
             word-break: break-all;
-            text-align: right;
-            width: 100%;
-            letter-spacing: 1px;
         }
 
-        .current {
-            font-size: 52px;
-            font-weight: 300;
-            color: var(--text-display);
+        .current-operand {
+            color: #eaeaea;
+            font-size: 36px;
+            font-weight: bold;
+            word-wrap: break-word;
             word-break: break-all;
-            text-align: right;
-            width: 100%;
-            line-height: 1.1;
-            letter-spacing: -1px;
         }
 
         .buttons {
@@ -165,333 +63,133 @@
             gap: 12px;
         }
 
-        .btn {
-            padding: 22px;
-            font-size: 22px;
-            font-weight: 500;
+        button {
             border: none;
-            border-radius: 18px;
+            border-radius: 12px;
+            padding: 20px;
+            font-size: 20px;
             cursor: pointer;
-            transition: all 0.15s ease;
-            color: var(--text-primary);
-            background: var(--bg-button);
-            position: relative;
-            overflow: hidden;
-            box-shadow: var(--shadow-sm);
+            transition: all 0.2s;
+            font-weight: 500;
         }
 
-        .btn:hover {
+        button:hover {
             transform: translateY(-2px);
-            background: var(--bg-button-hover);
-            box-shadow: 0 6px 16px rgba(26, 35, 50, 0.15);
+            opacity: 0.9;
         }
 
-        [data-theme="dark"] .btn:hover {
-            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+        button:active {
+            transform: translateY(0);
         }
 
-        .btn:active {
-            transform: translateY(1px);
-            box-shadow: none;
-        }
-
-        .btn-function {
-            background: var(--bg-function);
-            color: var(--text-primary);
-            font-size: 19px;
-            font-weight: 600;
+        .btn-number {
+            background: #1a1a2e;
+            color: #ffffff;
         }
 
         .btn-operator {
-            background: var(--operator-bg);
-            color: var(--operator-text);
-            font-size: 26px;
-            font-weight: 500;
+            background: #e94560;
+            color: #ffffff;
         }
 
-        .btn-operator:hover {
-            background: #d4802f;
+        .btn-function {
+            background: #0f3460;
+            color: #ffffff;
         }
 
         .btn-equals {
-            background: var(--equals-bg);
-            color: var(--equals-text);
-            font-size: 28px;
-            font-weight: 500;
+            background: #4361ee;
+            color: #ffffff;
+            grid-column: span 4;
         }
 
-        .btn-equals:hover {
-            background: var(--accent-hover);
-        }
-
-        .btn-small {
-            font-size: 18px;
-            font-weight: 600;
-        }
-
-        /* Ripple effect */
-        .btn::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.3);
-            transform: translate(-50%, -50%);
-            transition: width 0.4s, height 0.4s;
-        }
-
-        .btn:active::after {
-            width: 200px;
-            height: 200px;
-        }
-
-        /* Responsive */
-        @media (max-width: 400px) {
-            .calculator {
-                padding: 20px;
-                border-radius: 24px;
-            }
-            .btn {
-                padding: 18px;
-                font-size: 20px;
-            }
-            .current {
-                font-size: 42px;
-            }
-            .history {
-                font-size: 24px;
-            }
-            .display {
-                padding: 22px 18px;
-                min-height: 130px;
-            }
-        }
-
-        /* Animation */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .calculator {
-            animation: fadeIn 0.5s ease;
-        }
-
-        /* Error shake */
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-8px); }
-            75% { transform: translateX(8px); }
-        }
-
-        .display.error {
-            animation: shake 0.4s ease;
-            background: #e74c3c;
-        }
-
-        .display.error .current {
-            color: white;
+        .btn-zero {
+            grid-column: span 2;
         }
     </style>
 </head>
 <body>
     <div class="calculator">
-        <div class="header">
-            <div class="title">Kalkulator</div>
-            <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-                <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-                </svg>
-                <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="12" cy="12" r="5"/>
-                    <line x1="12" y1="1" x2="12" y2="3"/>
-                    <line x1="12" y1="21" x2="12" y2="23"/>
-                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
-                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
-                    <line x1="1" y1="12" x2="3" y2="12"/>
-                    <line x1="21" y1="12" x2="23" y2="12"/>
-                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
-                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
-                </svg>
-            </button>
+        <div class="display">
+            <div class="previous-operand" id="previousOperand"></div>
+            <div class="current-operand" id="currentOperand">0</div>
         </div>
-
-        <div class="display" id="display">
-            <div class="history" id="history"></div>
-            <div class="current" id="current">0</div>
-        </div>
-
         <div class="buttons">
-            <button class="btn btn-function" data-action="clear">C</button>
-            <button class="btn btn-function" data-action="delete">⌫</button>
-            <button class="btn btn-function" data-operator="%">%</button>
-            <button class="btn btn-operator" data-operator="÷">÷</button>
+            <button class="btn-function" onclick="clearAll()">C</button>
+            <button class="btn-function" onclick="deleteLast()">⌫</button>
+            <button class="btn-function" onclick="percentage()">%</button>
+            <button class="btn-operator" onclick="chooseOperation('÷')">÷</button>
 
-            <button class="btn" data-number="7">7</button>
-            <button class="btn" data-number="8">8</button>
-            <button class="btn" data-number="9">9</button>
-            <button class="btn btn-operator" data-operator="×">×</button>
+            <button class="btn-number" onclick="appendNumber('7')">7</button>
+            <button class="btn-number" onclick="appendNumber('8')">8</button>
+            <button class="btn-number" onclick="appendNumber('9')">9</button>
+            <button class="btn-operator" onclick="chooseOperation('×')">×</button>
 
-            <button class="btn" data-number="4">4</button>
-            <button class="btn" data-number="5">5</button>
-            <button class="btn" data-number="6">6</button>
-            <button class="btn btn-operator" data-operator="-">−</button>
+            <button class="btn-number" onclick="appendNumber('4')">4</button>
+            <button class="btn-number" onclick="appendNumber('5')">5</button>
+            <button class="btn-number" onclick="appendNumber('6')">6</button>
+            <button class="btn-operator" onclick="chooseOperation('-')">−</button>
 
-            <button class="btn" data-number="1">1</button>
-            <button class="btn" data-number="2">2</button>
-            <button class="btn" data-number="3">3</button>
-            <button class="btn btn-operator" data-operator="+">+</button>
+            <button class="btn-number" onclick="appendNumber('1')">1</button>
+            <button class="btn-number" onclick="appendNumber('2')">2</button>
+            <button class="btn-number" onclick="appendNumber('3')">3</button>
+            <button class="btn-operator" onclick="chooseOperation('+')">+</button>
 
-            <button class="btn btn-small" data-number="00">00</button>
-            <button class="btn" data-number="0">0</button>
-            <button class="btn btn-small" data-number="000">000</button>
-            <button class="btn" data-number=",">,</button>
+            <button class="btn-number" onclick="appendNumber('00')">00</button>
+            <button class="btn-number" onclick="appendNumber('0')">0</button>
+            <button class="btn-number" onclick="appendNumber('000')">000</button>
+            <button class="btn-number" onclick="appendNumber('.')">,</button>
 
-            <button class="btn btn-equals" data-action="equals" style="grid-column: span 4;">=</button>
+            <button class="btn-equals" onclick="calculate()">=</button>
         </div>
     </div>
 
     <script>
-        // Theme Toggle
-        const themeToggle = document.getElementById('themeToggle');
-        const savedTheme = localStorage.getItem('calculator_theme') || 'light';
-        document.documentElement.setAttribute('data-theme', savedTheme);
-
-        themeToggle.addEventListener('click', () => {
-            const current = document.documentElement.getAttribute('data-theme');
-            const next = current === 'light' ? 'dark' : 'light';
-            document.documentElement.setAttribute('data-theme', next);
-            localStorage.setItem('calculator_theme', next);
-        });
-
-        // Calculator Logic
-        const display = document.getElementById('display');
-        const currentDisplay = document.getElementById('current');
-        const historyDisplay = document.getElementById('history');
-
         let currentOperand = '0';
         let previousOperand = '';
-        let operation = undefined;
+        let operation = null;
         let shouldResetScreen = false;
 
-        // Format angka dengan pemisah ribuan (Indonesia style)
-        function formatNumber(number) {
-            if (number === 'Error') return number;
-            
-            // Handle desimal
-            const parts = number.toString().split(',');
-            const integerPart = parts[0];
-            const decimalPart = parts.length > 1 ? ',' + parts[1] : '';
-            
-            // Tambahkan pemisah ribuan
-            const formattedInteger = integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-            
-            return formattedInteger + decimalPart;
-        }
-
-        // Parse angka (hapus pemisah ribuan untuk kalkulasi)
-        function parseNumber(number) {
-            return number.replace(/\./g, '').replace(',', '.');
-        }
+        const currentOperandElement = document.getElementById('currentOperand');
+        const previousOperandElement = document.getElementById('previousOperand');
 
         function updateDisplay() {
-            const formattedCurrent = formatNumber(currentOperand);
-            currentDisplay.textContent = formattedCurrent;
-            
+            currentOperandElement.textContent = currentOperand;
             if (operation != null) {
-                const formattedPrevious = formatNumber(previousOperand);
-                historyDisplay.textContent = `${formattedPrevious} ${operation}`;
+                previousOperandElement.textContent = `${previousOperand} ${operation}`;
             } else {
-                historyDisplay.textContent = formatNumber(previousOperand);
+                previousOperandElement.textContent = previousOperand;
             }
         }
 
         function appendNumber(number) {
-            if (number === ',' && currentOperand.includes(',')) return;
             if (shouldResetScreen) {
                 currentOperand = '';
                 shouldResetScreen = false;
             }
-            if (currentOperand === '0' && number !== ',') {
+            
+            // Prevent multiple decimals
+            if (number === '.' && currentOperand.includes('.')) return;
+            
+            // Replace initial 0
+            if (currentOperand === '0' && number !== '.') {
                 currentOperand = number;
             } else {
                 currentOperand += number;
             }
+            
             updateDisplay();
         }
 
-        function chooseOperation(op) {
-            if (currentOperand === '') return;
-            if (previousOperand !== '') {
-                compute();
-            }
-            operation = op;
-            previousOperand = currentOperand;
-            currentOperand = '';
-            updateDisplay();
-        }
-
-        function compute() {
-            let computation;
-            const prev = parseFloat(parseNumber(previousOperand));
-            const current = parseFloat(parseNumber(currentOperand));
-            
-            if (isNaN(prev) || isNaN(current)) return;
-            
-            switch (operation) {
-                case '+':
-                    computation = prev + current;
-                    break;
-                case '-':
-                    computation = prev - current;
-                    break;
-                case '×':
-                    computation = prev * current;
-                    break;
-                case '÷':
-                    if (current === 0) {
-                        currentOperand = 'Error';
-                        display.classList.add('error');
-                        updateDisplay();
-                        setTimeout(() => {
-                            display.classList.remove('error');
-                            currentOperand = '0';
-                            updateDisplay();
-                        }, 1500);
-                        return;
-                    }
-                    computation = prev / current;
-                    break;
-                case '%':
-                    computation = prev % current;
-                    break;
-                default:
-                    return;
-            }
-            
-            // Round untuk menghindari masalah floating point
-            computation = Math.round(computation * 100000000) / 100000000;
-            
-            // Format hasil dengan koma untuk desimal
-            currentOperand = computation.toString().replace('.', ',');
-            operation = undefined;
-            previousOperand = '';
-            shouldResetScreen = true;
-            updateDisplay();
-        }
-
-        function clear() {
+        function clearAll() {
             currentOperand = '0';
             previousOperand = '';
-            operation = undefined;
+            operation = null;
             updateDisplay();
         }
 
-        function deleteNumber() {
-            if (currentOperand.length === 1 || currentOperand === 'Error') {
+        function deleteLast() {
+            if (currentOperand.length === 1 || (currentOperand.length === 2 && currentOperand[0] === '-')) {
                 currentOperand = '0';
             } else {
                 currentOperand = currentOperand.slice(0, -1);
@@ -499,27 +197,83 @@
             updateDisplay();
         }
 
-        // Event Listeners
-        document.querySelectorAll('.btn').forEach(button => {
-            button.addEventListener('click', () => {
-                if (button.dataset.number !== undefined) {
-                    appendNumber(button.dataset.number);
-                } else if (button.dataset.operator !== undefined) {
-                    chooseOperation(button.dataset.operator);
-                } else if (button.dataset.action === 'equals') {
-                    compute();
-                } else if (button.dataset.action === 'clear') {
-                    clear();
-                } else if (button.dataset.action === 'delete') {
-                    deleteNumber();
-                }
-            });
-        });
+        function percentage() {
+            // Fix: Proper percentage calculation
+            const current = parseFloat(currentOperand);
+            if (isNaN(current)) return;
+
+            if (previousOperand && operation) {
+                // Calculate percentage of previous number
+                // Example: 100 + 10% = 100 + (100 * 0.10) = 110
+                const previous = parseFloat(previousOperand);
+                const percentValue = (previous * current) / 100;
+                currentOperand = percentValue.toString();
+            } else {
+                // Just convert to decimal
+                // Example: 10% = 0.10
+                currentOperand = (current / 100).toString();
+            }
+            updateDisplay();
+        }
+
+        function chooseOperation(op) {
+            if (currentOperand === '') return;
+            
+            if (previousOperand !== '') {
+                calculate();
+            }
+            
+            operation = op;
+            previousOperand = currentOperand;
+            currentOperand = '';
+            shouldResetScreen = false;
+            updateDisplay();
+        }
+
+        function calculate() {
+            if (operation === null || previousOperand === '' || currentOperand === '') return;
+
+            const prev = parseFloat(previousOperand);
+            const current = parseFloat(currentOperand);
+            
+            if (isNaN(prev) || isNaN(current)) return;
+
+            let result;
+            switch (operation) {
+                case '+':
+                    result = prev + current;
+                    break;
+                case '-':
+                    result = prev - current;
+                    break;
+                case '×':
+                    result = prev * current;
+                    break;
+                case '÷':
+                    if (current === 0) {
+                        alert('Tidak bisa membagi dengan nol!');
+                        return;
+                    }
+                    result = prev / current;
+                    break;
+                default:
+                    return;
+            }
+
+            // Handle decimal precision
+            result = Math.round(result * 1000000) / 1000000;
+            
+            currentOperand = result.toString();
+            operation = null;
+            previousOperand = '';
+            shouldResetScreen = true;
+            updateDisplay();
+        }
 
         // Keyboard support
         document.addEventListener('keydown', (e) => {
             if (e.key >= '0' && e.key <= '9') appendNumber(e.key);
-            if (e.key === ',' || e.key === '.') appendNumber(',');
+            if (e.key === '.') appendNumber('.');
             if (e.key === '+') chooseOperation('+');
             if (e.key === '-') chooseOperation('-');
             if (e.key === '*') chooseOperation('×');
@@ -527,13 +281,11 @@
                 e.preventDefault();
                 chooseOperation('÷');
             }
-            if (e.key === '%') chooseOperation('%');
-            if (e.key === 'Enter' || e.key === '=') compute();
-            if (e.key === 'Escape' || e.key === 'c' || e.key === 'C') clear();
-            if (e.key === 'Backspace') deleteNumber();
+            if (e.key === '%') percentage();
+            if (e.key === 'Enter' || e.key === '=') calculate();
+            if (e.key === 'Escape') clearAll();
+            if (e.key === 'Backspace') deleteLast();
         });
-
-        updateDisplay();
     </script>
 </body>
 </html>
