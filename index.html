@@ -153,12 +153,39 @@
         const currentOperandElement = document.getElementById('currentOperand');
         const previousOperandElement = document.getElementById('previousOperand');
 
+        // Format angka dengan pemisah ribuan (titik) dan desimal (koma)
+        function formatNumber(number) {
+            // Handle empty or invalid input
+            if (number === '' || number === '-') return number;
+            
+            // Split integer and decimal parts
+            const parts = number.toString().split('.');
+            const integerPart = parts[0];
+            const decimalPart = parts.length > 1 ? parts[1] : '';
+            
+            // Add thousand separator (dot) to integer part
+            const formattedInteger = integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+            
+            // Return formatted number
+            if (decimalPart !== '') {
+                return `${formattedInteger},${decimalPart}`;
+            }
+            return formattedInteger;
+        }
+
+        // Parse formatted number back to raw number
+        function parseNumber(formatted) {
+            if (formatted === '' || formatted === '-') return formatted;
+            // Remove thousand separator (dot) and convert decimal separator (comma to dot)
+            return formatted.replace(/\./g, '').replace(',', '.');
+        }
+
         function updateDisplay() {
-            currentOperandElement.textContent = currentOperand;
+            currentOperandElement.textContent = formatNumber(currentOperand);
             if (operation != null) {
-                previousOperandElement.textContent = `${previousOperand} ${operation}`;
+                previousOperandElement.textContent = `${formatNumber(previousOperand)} ${operation}`;
             } else {
-                previousOperandElement.textContent = previousOperand;
+                previousOperandElement.textContent = formatNumber(previousOperand);
             }
         }
 
@@ -198,20 +225,15 @@
         }
 
         function percentage() {
-            // Fix: Proper percentage calculation
-            const current = parseFloat(currentOperand);
-            if (isNaN(current)) return;
+            const rawCurrent = parseFloat(parseNumber(currentOperand));
+            if (isNaN(rawCurrent)) return;
 
             if (previousOperand && operation) {
-                // Calculate percentage of previous number
-                // Example: 100 + 10% = 100 + (100 * 0.10) = 110
-                const previous = parseFloat(previousOperand);
-                const percentValue = (previous * current) / 100;
+                const rawPrevious = parseFloat(parseNumber(previousOperand));
+                const percentValue = (rawPrevious * rawCurrent) / 100;
                 currentOperand = percentValue.toString();
             } else {
-                // Just convert to decimal
-                // Example: 10% = 0.10
-                currentOperand = (current / 100).toString();
+                currentOperand = (rawCurrent / 100).toString();
             }
             updateDisplay();
         }
@@ -233,8 +255,8 @@
         function calculate() {
             if (operation === null || previousOperand === '' || currentOperand === '') return;
 
-            const prev = parseFloat(previousOperand);
-            const current = parseFloat(currentOperand);
+            const prev = parseFloat(parseNumber(previousOperand));
+            const current = parseFloat(parseNumber(currentOperand));
             
             if (isNaN(prev) || isNaN(current)) return;
 
